@@ -3,6 +3,7 @@
 name: Liquibase
 
 # Controls when the workflow will run
+on: none
 # on: [push, pull_request]
 
 env:
