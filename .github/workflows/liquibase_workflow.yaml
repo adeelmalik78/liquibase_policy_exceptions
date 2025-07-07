@@ -3,7 +3,7 @@
 name: Liquibase
 
 # Controls when the workflow will run
-on: [push, pull_request]
+# on: [push, pull_request]
 
 env:
     APP_NAME: APP_ABC
@@ -35,7 +35,7 @@ jobs:
         run: |
           echo "Running build for application $APP_NAME"  
           liquibase flow --flow-file=flows/liquibase.qc-exceptions.yaml
-          liquibase flow --flow-file=flows/liquibase.flowfile.yaml
+          # liquibase flow --flow-file=flows/liquibase.flowfile.yaml
           
       - name: Create Artifact
         if: always()
