@@ -1,0 +1,23 @@
+{
+    "qualityChecksOverrides": [
+        {
+            "app_name": "APP_ABC",
+            "policy": "RollbackRequired",
+            "time_to_live_days": 30,
+            "start_date": "2025-01-01T00:00:00Z"
+        },
+		{
+            "app_name": "APP_ABC",
+            "policy": "CheckTablesForIndex",
+            "time_to_live_days": 30,
+            "start_date": "2025-01-01T00:00:00Z"
+        },
+		{
+            "app_name": "APP_ABC",
+            "policy": "ChangeDropTableWarn",
+            "time_to_live_days": 30,
+            "start_date": "2025-01-01T00:00:00Z"
+        }
+		
+    ]
+}

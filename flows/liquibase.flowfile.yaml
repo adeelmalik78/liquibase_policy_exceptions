@@ -1,0 +1,52 @@
+##########           LIQUIBASE FLOWFILE                ##########
+##########  learn more http://docs.liquibase.com/flow  ##########
+
+
+stages:
+
+  ## The first stage of actions
+  Checks-Changelog:
+    actions:
+      #
+      # Quality Checks for changelog
+      #
+      - type: liquibase
+        command: checks run
+        cmdArgs: {checks-scope: changelog, 
+                  checks-filter: pending,
+                  checks-settings-file: "quality_checks/liquibase.checks-settings.conf", 
+                  report-name: Changelog-checks-report.html}
+
+  Update:
+    actions:
+      #
+      # Show Status
+      #
+      - type: liquibase
+        command: status
+        cmdArgs: {verbose: true}        
+      #
+      # Output the SQL that will be run
+      #
+      - type: liquibase
+        command: updateSql
+      #
+      # Run the update
+      #
+      - type: liquibase
+        command: update
+
+  Checks-Database:
+    actions:    
+      #
+      # Quality Checks for database
+      #
+      - type: liquibase
+        command: checks run
+        cmdArgs: {checks-scope: database, checks-settings-file: "quality_checks/liquibase.checks-settings.conf", report-name: Database-checks-report.html}
+
+## do these actions after all flow commands, regardless of whether the above commands were successful
+endStage:
+  actions:
+    - type: liquibase
+      command: history

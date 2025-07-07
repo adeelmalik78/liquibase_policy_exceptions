@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - includeAll:
+      path: changelogs/ddl
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+      
+#   - includeAll:
+#       path: changelogs/storedlogic
+#       relativeToChangelogFile: true
+#       errorIfMissingOrEmpty: false
+      
+  - includeAll:
+      path: changelogs/data
+      relativeToChangelogFile: true
+      errorIfMissingOrEmpty: false
+      

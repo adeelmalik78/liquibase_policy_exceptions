@@ -1,0 +1,30 @@
+##########           LIQUIBASE FLOWFILE                ##########
+##########  learn more http://docs.liquibase.com/flow  ##########
+
+stages:
+
+  ## The first stage of actions
+  FindNonExpiredExceptions:
+    actions:
+      #
+      # Find exceptions for $APP_NAME that have not expired.
+      # Put these exceptions into an allowlist variable.
+      # Disable all Quality Checks in the allowlist.
+      # TO DO: once --checkname is supported with bulk-set, set these checks to SEVERITY 0 instead of disabling them
+      #
+      - type: shell
+        if: exists("quality_checks_overrides/qc_overrides.json")
+        command: flows/disable_checks.sh
+
+  ## The second stage of actions
+  RunChecks:
+    actions:
+      #
+      # Check that jq is installed
+      #
+      - type: liquibase
+        command: flow
+        cmdArgs: { flow-file: "flows/liquibase.flowfile.yaml"}
+
+
+
